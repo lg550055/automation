@@ -19,7 +19,8 @@ phones = re.findall(phone_pattern, text)
 phones.sort()
 with open('phone_numbers.txt', 'w') as f:
   for p in phones:
-    f.write(p+'\n')
+    np = re.sub(r'\)', '-', p)
+    if len(np) == 10:
+      np = np[:3]+'-'+np[3:6]+'-'+np[6:]
+    f.write(np+'\n')
 
-print ('Emails found' +len(emails))
-print ('Phones found' +len(phones))
